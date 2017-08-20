@@ -1,0 +1,23 @@
+#supporters section h2:first-child {
+    border-top: 2px solid #ff8130;
+    padding: 15px 0 0;
+}
+
+#supporters .col-lg-3 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#supporters .card {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+#supporters .supporter {
+    width: 100%;
+    padding: 5px;
+
+    -webkit-box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.75);
+}

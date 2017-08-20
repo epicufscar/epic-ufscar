@@ -1,0 +1,18 @@
+{
+  "name": "epic-ufscar",
+  "version": "1.0.0",
+  "description": "EPiC UFSCar",
+  "main": "./static/app.js",
+  "author": "Renan Peixoto da Silva",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.5",
+    "style-loader": "^0.18.2",
+    "file-loader": "^0.11.2",
+    "webpack": "^3.5.5"
+  }
+}

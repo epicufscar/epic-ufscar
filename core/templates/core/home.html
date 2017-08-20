@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+    <main id="home">
+
+        <!-- MAIN CAROUSEL -->
+        <section id="carousel">
+            <div class="carousel slide" data-ride="carousel" data-interval="7000">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item"><img class="img_slide" src="{% static 'images/carousel/001.jpg' %}"/></div>
+                    <div class="carousel-item"><img class="img_slide" src="{% static 'images/carousel/002.jpg' %}"/></div>
+                    <div class="carousel-item"><img class="img_slide" src="{% static 'images/carousel/003.jpg' %}"/></div>
+                    <div class="carousel-item"><img class="img_slide" src="{% static 'images/carousel/004.jpg' %}"/></div>
+                    <div class="carousel-item active"><img class="img_slide" src="{% static 'images/carousel/005.jpg' %}"/></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT PRESENTATION -->
+        <section id="presentation" class="app_component">
+            <div class="container">
+                <section class="text-content">{{ presentation|safe }}</section>
+                <section class="read-more wow fadeInRight">
+                    <a href="{% url 'about' %}"><button type="button" class="btn btn-md btn-epic">...SAIBA MAIS</button></a>
+                </section>
+            </div>
+        </section>
+
+    </main>
+{% endblock body %}

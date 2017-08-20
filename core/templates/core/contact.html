@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Contato{% endblock title %}
+
+{% block body %}
+    <main id="contact-us">
+        <section id="map"></section>
+        <section class="container wow fadeInRight">
+
+            <!-- FEEDBACK MESSAGE -->
+            {% if email_success == True %}
+                <div class="feedback msg-success"><b><i class="fa fa-smile-o fa-lg"></i>&nbsp;MENSAGEM ENVIADA COM SUCESSO. AGUARDE NOSSO RETORNO!</b></div>
+            {% elif email_success == False %}
+                <div class="feedback msg-failure"><b><i class="fa fa-frown-o fa-lg"></i>&nbsp;SUA MENSAGEM FALHOU! POR FAVOR, TENTE NOVAMENTE.</b></div>
+            {% endif %}
+
+            <div class="row">
+
+                <div class="col-lg-5">
+                    <!-- TEXTUAL INFORMATION -->
+                    <h2>FALE CONOSCO</h2>
+                    <div>
+                        <p>Preencha o seguinte formulário para entrar em contato conosco. Será um prazer ler e responder sua mensagem.</p>
+                        Se preferir, envie um e-mail para <br><a href="mailto:epic.ufscar@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;epic.ufscar@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <!-- CONTACT FORM -->
+                    <form id="contact-form" class="form-group" method="post">
+                        {% csrf_token %}
+                        <div class="form-group"><input class="form-control" name="name" id="name" placeholder="Seu nome"></div>
+                        <div class="form-group"><input class="form-control" type="email" name="email" id="email" placeholder="Seu e-mail"></div>
+                        <div class="form-group"><input class="form-control" name="subject" id="subject" placeholder="Assunto"></div>
+                        <div class="form-group"><textarea class="form-control" name="message" id="message" rows="5" placeholder="Mensagem"></textarea></div>
+                        <button class="btn btn-epic float-right">ENVIAR</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+{% endblock body %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsN6bPonGkWQbRmfIMXEWe_QXlNA50qlo&callback=initMap"></script>
+{% endblock scripts %}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load imagename %}
+
+{% block title %}Equipe{% endblock title %}
+
+{% block body %}
+    <div id="team" class="app_component">
+        <div class="container">
+            <div class="row">
+
+                <!-- MENU -->
+                <div class="mini-menu col-lg-3 push-lg-9">
+                    <ul class="list-group">
+                        <a href="#current-members"><li class="list-group-item">EQUIPE ATUAL</li></a>
+                        <a href="#past-members"><li class="list-group-item">ALUMNI</li></a>
+                    </ul>
+                </div>
+
+                {% static 'images/members/' as baseURL %}
+
+                <!-- CURRENT MEMBERS -->
+                <div class="col-lg-9 pull-lg-3">
+                    <section id="current-members">
+                        <h2>EQUIPE ATUAL</h2>
+                        <div class="row">
+                            {% for member in current %}
+                                <div class="col-md-4">
+                                    <div class="outter-card">
+                                        <div class="card wow bounceInUp">
+                                            <div class="card-block">
+
+                                                <!-- MEMBER'S PIC -->
+                                                {% if member.image %}
+                                                    <div><img class="profile-pic grow" src="{{ baseURL }}{{ member.image|imagename }}"></div>
+                                                {% else %}
+                                                    <div><img class="no-pic grow"><div><i class="fa fa-user fa-5x"></i></div></div>
+                                                {% endif %}
+
+                                                <!-- MEMBER'S INFO -->
+                                                <div class="card-content">
+                                                    <p class="member-name">{{ member }}</p>
+
+                                                    {% if member.program and member.program == 'BCC' %}
+                                                        <p class="program">BACHARELADO EM CIÊNCIA DA COMPUTAÇÃO</p>
+                                                    {% elif member.program and member.program == 'EnC' %}
+                                                        <p class="program">ENGENHARIA DE COMPUTAÇÃO</p>
+                                                    {% endif %}
+
+                                                    {% if member.email %}
+                                                        <a href="mailto:{{ member.email }}" target="_blank"><i class="fa fa-envelope fa-lg"></i></a>
+                                                    {% endif %}
+
+                                                    {% if member.linkedin %}
+                                                        <a href="http://www.linkedin.com/in/{{ member.linkedin }}" target="_blank"><i class="fa fa-linkedin-square fa-lg"></i></a>
+                                                    {% endif %}
+
+                                                    {% if member.github %}
+                                                        <a href="http://www.github.com/{{ member.github }}" target="_blank"><i class="fa fa-github fa-lg"></i></a>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+
+                    <!-- PAST MEMBERS -->
+                    <section id="past-members">
+                        <h2>ALUMNI</h2>
+                        {% for member in past %}
+                            <ul class="list-group">
+                                <li class="list-group-item"><i class="fa fa-user"></i>{{ member }}</li>
+                            </ul>
+                        {% endfor %}
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

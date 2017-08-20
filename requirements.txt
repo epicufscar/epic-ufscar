@@ -1,0 +1,9 @@
+whitenoise==3.3.0
+dj-database-url==0.4.1
+Django==1.11.4
+gunicorn==19.6.0
+sendgrid==3.6.5
+sendgrid-django==4.0.4
+Pillow==4.2.1
+psycopg2==2.7.3
+python-decouple==3.1

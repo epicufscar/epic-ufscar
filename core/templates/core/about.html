@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Sobre{% endblock title %}
+
+{% block body %}
+    <main id="about" class="app_component">
+        <div class="container">
+            <div class="row">
+
+                <!-- MENU -->
+                <div class="mini-menu col-lg-3 push-lg-9">
+                    <ul class="list-group">
+                        <a href="#about-section"><li class="list-group-item">{{ about_headline }}</li></a>
+                        <a href="#divisions-section"><li class="list-group-item">{{ divisions_headline }}</li></a>
+                    </ul>
+                </div>
+
+                <!-- CONTENT -->
+                <div class="col-lg-9 pull-lg-3">
+
+                    <!-- ABOUT -->
+                    <section id="about-section">
+                        <h2>{{ about_headline }}</h2>
+                        <div class="text-content">{{ about_html|safe }}</div>
+                    </section>
+
+                    <!-- DIVISIONS -->
+                    <section id="divisions-section">
+                        <h2>{{ divisions_headline }}</h2>
+                        <div class="text-content">{{ divisions_html|safe }}</div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </main>
+{% endblock body %}

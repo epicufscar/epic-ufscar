@@ -1,0 +1,17 @@
+#about a, #about a:link, #about a:visited,
+#about a:hover, #about a:active {
+    color: #444444;
+    margin: 0;
+    border: 0;
+}
+
+#about .col-lg-9 > section {
+    border-top: 2px solid #ff8130;
+    padding: 15px 0;
+    margin-top: 32px;
+}
+
+#about .text-content > p {
+    text-indent: 30px;
+    text-align: justify;
+}

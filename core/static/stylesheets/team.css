@@ -1,0 +1,110 @@
+#team a, #team a:link, #team a:visited,
+#team a:hover, #team a:active {
+    color: #444444;
+    margin: 0;
+    border: 0;
+}
+
+#team section h2:first-child {
+    border-top: 2px solid #ff8130;
+    padding: 15px 0;
+    margin-top: 32px;
+}
+
+#team #current-members {
+    margin-top: 30px;
+}
+
+#team #current-members .program {
+    font-size: 12px;
+    margin-top: -15px;
+}
+
+#team #current-members .card {
+    width: 100%;
+    min-height: 400px;
+    border: 0 !important;
+    text-align: center !important;
+}
+
+#team #current-members .card-content p:first-child {
+    font-weight: bold;
+}
+
+#team #current-members .card-content {
+    top: 110px;
+    left: 0;
+    position: absolute;
+    width: calc(100% - 20px);
+    min-height: 250px;
+    margin: 0 10px;
+    padding: 130px 10px 10px;
+    border-radius: 5px;
+    text-align: center;
+    align-self: center;
+
+    -webkit-box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.75);
+}
+
+#team #current-members .no-pic,
+#team #current-members .profile-pic {
+    left: 0;
+    top: 0;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 250px;
+    height: 200px;
+    object-fit: cover;
+    background-color: #fbe8aa;
+    text-align: center;
+
+    -webkit-box-shadow: 0 5px 17px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 5px 17px -2px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 5px 17px -2px rgba(0, 0, 0, 0.75);
+}
+
+#team #current-members .no-pic:hover,
+#team #current-members .profile-pic:hover {
+    -webkit-filter: sepia(100%);
+    filter: sepia(100%);
+}
+
+#team #current-members .fa-lg {
+    color: #467490;
+}
+
+#team #current-members .fa-lg:hover {
+    color: #ff8130;
+}
+
+#team #current-members .fa-5x {
+    font-size: 8em;
+    color: #ffffff;
+    position: relative;
+    top: -160px;
+    left: 0;
+    z-index: 2;
+}
+
+#team #past-members h2:first-child {
+    margin-bottom: -10px;
+}
+
+#team #past-members .list-group-item {
+    border: 0;
+    border-radius: 0;
+    border-left: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    background-color: #f6f6f6;
+}
+
+#team #past-members .list-group-item:hover {
+    background-color: #fbe8aa;
+}
+
+#team #past-members .fa {
+    margin: 0 10px;
+}

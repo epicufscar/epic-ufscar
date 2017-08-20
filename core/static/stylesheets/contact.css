@@ -1,0 +1,64 @@
+#contact-us {
+    margin-top: -25px;
+    padding-bottom: 40px;
+}
+
+#contact-us #map {
+    width: 100%;
+    min-height: 25em;
+    background-color: #444444;
+    margin: 0;
+    padding: 0;
+}
+
+#contact-us .gm-style-iw {
+    padding-left: 10px !important;
+    padding-top: 10px !important;
+}
+
+#contact-us .gm-style-iw + div, .gm-style-iw + div + img {
+    display: none;
+}
+
+#contact-us .iw-title {
+    padding: 10px 15px;
+    background-color: #467490;
+    color: #ffffff;
+    border-bottom: 4px solid #ff8130;
+}
+
+#contact-us .iw-content {
+    padding: 10px 15px;
+}
+
+#contact-us h2 {
+    border-top: 2px solid #ff8130;
+    padding: 15px 0;
+    margin-top: 32px;
+}
+
+#contact-us #contact-form {
+    margin: 30px 0;
+}
+
+#contact-us .form-control {
+    border: 0;
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+
+#contact-us .feedback {
+    width: 100%;
+    margin-top: 30px;
+    padding: 15px;
+    color: #ffffff;
+    text-align: center;
+}
+
+#contact-us .msg-success {
+    background-color: #89ba3d;
+}
+
+#contact-us .msg-failure {
+    background-color: #b61f1c;
+}

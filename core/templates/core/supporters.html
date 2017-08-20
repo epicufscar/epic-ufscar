@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load imagename %}
+
+{% block title %}Apoiadores{% endblock title %}
+
+{% block body %}
+
+    <!-- PRICING PLANS FOR POTENTIAL SUPPORTERS -->
+    <section id="pricing" class="app_component">
+        <div class="container">
+            <div class="row">
+                <a class="btn btn-be-supporter animated pulse" data-toggle="collapse" href="#plans">
+                    <i class="fa fa-handshake-o fa-lg"></i>SEJA UM APOIADOR
+                </a>
+            </div>
+            <div id="plans" class="collapse">
+                <div class="plan-tabs">
+
+                    <!-- PLANS TYPES NAV MENU -->
+                    <input id="tab-workshop" type="radio" name="tabs">
+                    <label for="tab-workshop" class="label-radio">QUERO APOIAR O PRÓXIMO WORKSHOP</label>
+                    <input id="tab-continuous" type="radio" name="tabs" checked>
+                    <label for="tab-continuous" class="label-radio">QUERO APOIAR CONTINUAMENTE</label>
+                    <input id="tab-donation" type="radio" name="tabs">
+                    <label for="tab-donation" class="label-radio">QUERO FAZER UMA DOAÇÃO</label>
+
+                    <!-- PLAN: CONTINUOUS -->
+                    <section id="continuous">
+                        <div class="row">
+                            <p class="plan-description">
+                                Nesta modalidade, você firma uma parceria com a EPiC: ao passo que nos ajuda
+                                continuamente a manter nossas atividades, nós facilitamos o processo de reconhecimento
+                                de sua marca por nossos alunos e a comunidade acadêmica. Assim, além de contribuir com a
+                                formação de um número de profissionais, terá aumentado seu interesse em querer fazer
+                                parte de sua equipe no futuro.
+                            </p>
+
+                            {% for plan in plans_continuous %}
+                            <div class="col-lg-4 plan">
+                                <div class="plan-price
+                                    {% if plan.name == 'Júnior' %} junior
+                                    {% elif plan.name == 'Pleno' %} middle
+                                    {% elif plan.name == 'Sênior' %} senior
+                                    {% endif %} grow">
+                                    R$<b>{{ plan.price|floatformat:0 }}</b><small>/mês</small>
+                                </div>
+                                {% for benefit in plan.benefits.all %}
+                                    <p class="plan-benefit">{{ benefit.benefit }}</p>
+                                {% endfor %}
+                                <button type="button" class="btn btn-go-support btn-choose btn-epic btn-block"
+                                        data-toggle="modal" data-target="#contact-modal"
+                                        data-action="APOIO CONTÍNUO - {{ plan.name }}, R${{ plan.price|floatformat:0 }}/mês">
+                                    ESCOLHER
+                                </button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+
+                    <!-- PLAN: WORKSHOP -->
+                    <section id="workshop">
+                        <div class="row">
+                            <p class="plan-description">
+                                Esta modalidade é ideal para aqueles que querem treinar futuros profissionais em uma
+                                área específica, uma vez que ela faz sentido para sua organização ou você acredita na
+                                importância da mesma. Assim, você apoia as atividades envolvidas num único Workshop.
+                                Workshops são cursos pontuais, de duração variada (usualmente entre 4h e 16h), e que
+                                podem fazer parte de Trilhas específicas. Por exemplo, uma Trilha de <i>"Testes de
+                                Software"</i> pode incluir os Workshops <i>"Planejamento de Testes"</i> e <i>"Teste
+                                Unitário"</i>. Você escolhe qual Workshop apoiar!
+                            </p>
+
+                            {% for plan in plans_workshop %}
+                            <div class="col-lg-4 plan">
+                                <div class="plan-price
+                                    {% if plan.name == 'Júnior' %} junior
+                                    {% elif plan.name == 'Pleno' %} middle
+                                    {% elif plan.name == 'Sênior' %} senior
+                                    {% endif %} grow">
+                                    R$<b>{{ plan.price|floatformat:0 }}</b>
+                                </div>
+                                {% for benefit in plan.benefits.all %}
+                                    <p class="plan-benefit">{{ benefit.benefit }}</p>
+                                {% endfor %}
+                                <button type="button" class="btn btn-go-support btn-choose btn-epic btn-block"
+                                        data-toggle="modal" data-target="#contact-modal"
+                                        data-action="APOIO WORKSHOP - {{ plan.name }}, R${{ plan.price|floatformat:0 }} (único)">
+                                    ESCOLHER
+                                </button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+
+                    <!-- PLAN: DONATION -->
+                    <section id="donation">
+                        <div class="row">
+
+                            <div class="col-lg-5">
+                                <!-- TEXTUAL INFORMATION -->
+                                <div>
+                                    <p class="plan-description">
+                                        Doando qualquer valor para a EPiC, você estará facilitando a criação de
+                                        materiais, compra de recursos necessários, e ajuda de custo aos palestrantes
+                                        convidados para nossos cursos.
+                                    </p>
+                                    <p class="plan-description">
+                                        Nós e nossos alunos ficaremos gratos, e também seu nome (ou sua marca)
+                                        aparecerão entre os <b>Doadores do Mês</b> na nossa página no
+                                        <a href="http://www.facebook.com/epicufscar" target="_blank">
+                                            Facebook <i class="fa fa-facebook-official"></i>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <!-- DONATION SLIDER -->
+                                <div class="form-group">
+                                    {% csrf_token %}
+                                    <h2>QUANTO VOCÊ PODE DOAR?</h2>
+                                    <div class="range-slider">
+                                        <input class="range-slider__range" type="range" value="25" min="1" step="1" max="100">
+                                        <span class="range-slider__value">25</span>
+                                    </div>
+                                    <hr/>
+                                    <button type="button" class="btn btn-go-support btn-half btn-epic float-right"
+                                            data-toggle="modal" data-target="#contact-modal"
+                                            data-action="DOAÇÃO">
+                                        CONFIRMAR
+                                    </button>
+                                </div>
+                             </div>
+                        </div>
+                    </section>
+                </div>
+                <br>
+
+                <!-- CONTACT FORM MODAL -->
+                <div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="contact-modal-label">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title" id="contact-modal-label">ENTRE EM CONTATO</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+                            </div>
+                            <!-- CONTACT FORM -->
+                            <form id="contact-form" class="form-group" method="post" action="{% url 'contact' %}">
+                                <div class="modal-body">
+                                    {% csrf_token %}
+                                    <div class="form-group"><input class="form-control" name="name" id="name" placeholder="Seu nome"></div>
+                                    <div class="form-group"><input class="form-control" type="email" name="email" id="email" placeholder="Seu e-mail"></div>
+                                    <div class="form-group"><input class="form-control" name="company" id="company" placeholder="Organização"></div>
+                                    <div class="form-group"><input class="form-control" name="subject" id="subject" placeholder="Assunto" readonly></div>
+                                    <div class="form-group"><textarea class="form-control" name="message" id="message" rows="7" placeholder="Mensagem"></textarea></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-epic btn-half float-right">ENVIAR</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTINUOUS ACTIVE SUPPORTERS -->
+    <section id="supporters" class="app_component">
+        <div class="container">
+            <section>
+                <h2>ESTES SÃO NOSSOS APOIADORES</h2>
+                <div class="card-columns">
+                    {% static 'images/supporters/' as baseURL %}
+                    {% for supporter in supporters %}
+                        <div class="card grow">
+                            <a href="{{ supporter.page }}" target="_blank">
+                                <img class="supporter" src="{{ baseURL }}{{ supporter.image|imagename }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </section>
+
+{% endblock body %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
+{% endblock scripts %}

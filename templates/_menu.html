@@ -1,0 +1,29 @@
+{% load staticfiles %}
+
+<header id="menu">
+    <div class="bg-faded">
+        <div class="container">
+            <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                        data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}"><img class="logo-menu" src="{% static 'images/logo_epic.png' %}"/></a>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+                    <!-- MENU OPTIONS -->
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="{% url 'home' %}">HOME</a>
+                        <a class="nav-item nav-link" href="{% url 'about' %}">SOBRE</a>
+                        <a class="nav-item nav-link" href="{% url 'team' %}">EQUIPE</a>
+                        <!--<a class="nav-item nav-link" href="#">CURSOS</a>-->
+                        <a class="nav-item nav-link" href="{% url 'supporters' %}">APOIO</a>
+                        <a class="nav-item nav-link" href="{% url 'contact' %}">CONTATO</a>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
