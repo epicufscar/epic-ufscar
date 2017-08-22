@@ -68,3 +68,8 @@ def contact(request):
         data['email_success'] = None
 
     return render(request, 'core/contact.html', data)
+
+
+def courses(request):
+    data = {}
+    return render(request, 'core/courses.html', data)

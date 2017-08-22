@@ -36,6 +36,7 @@ class ImageContent(models.Model):
 # MEMBERS: models the team members' information
 class Members(models.Model):
     class Meta:
+        ordering = ['full_name']
         verbose_name = 'membro'
         verbose_name_plural = 'membros'
 
@@ -74,8 +75,9 @@ class Members(models.Model):
 # PLAN TYPE: defines financial plans types
 class PlanType(models.Model):
     class Meta:
-        verbose_name = 'tipo de plano de apoio'
-        verbose_name_plural = 'tipos de plano de apoio'
+        ordering = ['type']
+        verbose_name = 'plano de apoio - tipo'
+        verbose_name_plural = 'plano de apoio - tipos'
 
     def __str__(self):
         return self.type
@@ -87,8 +89,8 @@ class PlanType(models.Model):
 class PlanBenefit(models.Model):
     class Meta:
         ordering = ['priority']
-        verbose_name = 'benefício de plano de apoio'
-        verbose_name_plural = 'benefícios de plano de apoio'
+        verbose_name = 'plano de apoio - benefício'
+        verbose_name_plural = 'plano de apoio - benefícios'
 
     def __str__(self):
         return str(self.priority) + ' - [' + self.type.type + '] ' + self.benefit
@@ -101,6 +103,7 @@ class PlanBenefit(models.Model):
 # PLAN: lists princing plans for financial support
 class Plan(models.Model):
     class Meta:
+        ordering = ['type']
         verbose_name = 'plano de apoio'
         verbose_name_plural = 'planos de apoio'
 
@@ -116,6 +119,7 @@ class Plan(models.Model):
 # SUPPORTER: models financial supporters
 class Supporters(models.Model):
     class Meta:
+        ordering = ['name']
         verbose_name = 'Apoiador'
         verbose_name_plural = 'Apoiadores'
 
@@ -141,6 +145,87 @@ class Supporters(models.Model):
     pay_date = models.DateField(blank=False, null=True, verbose_name='data de pagamento')
     image = models.ImageField(blank=False, upload_to='core/static/images/supporters/', verbose_name='logo')
     notes = models.TextField(blank=True, verbose_name='anotações')
+
+
+# WORKSHOP: models workshops information
+class Workshop(models.Model):
+    class Meta:
+        ordering = ['title']
+        verbose_name = 'workshop'
+        verbose_name_plural = 'workshops'
+
+    def __str__(self):
+        return self.title
+
+    STATUS = (
+        ('EB', 'Em Breve'),
+        ('EX', 'Em Execução'),
+        ('FI', 'Finalizado')
+    )
+
+    title = models.CharField(blank=False, max_length=100, verbose_name='título')
+    description = models.TextField(blank=False, verbose_name='descrição')
+    instructors = models.ManyToManyField(Members, blank=False, related_name='%(class)s_workshop_instructors', verbose_name='instrutores')
+    helpers = models.ManyToManyField(Members, blank=True, related_name='%(class)s_workshop_helpers', verbose_name='auxiliares')
+    duration = models.FloatField(blank=False, verbose_name='carga horária estimada')
+    status = models.CharField(blank=False, max_length=2, choices=STATUS, verbose_name='Status')
+
+
+# WORKSHOP DATE: register every possible combination of date, time and location for each Workshop
+class WorkshopDates(models.Model):
+    class Meta:
+        ordering = ['workshop']
+        verbose_name = 'workshop data'
+        verbose_name_plural = 'workshop datas'
+
+    def __str__(self):
+        return self.workshop.title + ' - ' + str(self.date)
+
+    workshop = models.ForeignKey(Workshop, blank=False, verbose_name='workshop')
+    date = models.DateField(blank=False, verbose_name='data')
+    recurrent = models.BooleanField(blank=True, verbose_name='recorrente')
+    start_time = models.TimeField(blank=False, verbose_name='horário de início')
+    end_time = models.TimeField(blank=False, verbose_name='horário de fim')
+    location = models.CharField(blank=True, max_length=50, verbose_name='local')
+
+
+# WORKSHOP GUESTS: register possible guests for each workshop
+class WorkshopGuests(models.Model):
+    class Meta:
+        ordering = ['workshop']
+        verbose_name = 'workshop convidados'
+        verbose_name_plural = 'workshop convidados'
+
+    def __str__(self):
+        return self.workshop.title + ' - ' + self.name
+
+    workshop = models.ForeignKey(Workshop, blank=False, verbose_name='workshop')
+    name = models.CharField(blank=False, max_length=100, verbose_name='nome')
+    email = models.CharField(blank=True, max_length=100, verbose_name='email')
+    page = models.CharField(blank=True, max_length=100, verbose_name='web page')
+    notes = models.TextField(blank=True, verbose_name='anotações')
+
+
+# SPECIALIZATION: groups workshops into a single theme
+class Specialization(models.Model):
+    class Meta:
+        ordering = ['title']
+        verbose_name = 'trilha'
+        verbose_name_plural = 'trilhas'
+
+    def __str__(self):
+        return self.title
+
+    STATUS = (
+        ('EB', 'Em Breve'),
+        ('EX', 'Em Execução'),
+        ('FI', 'Finalizado')
+    )
+
+    title = models.CharField(blank=False, max_length=100, verbose_name='título')
+    description = models.TextField(blank=False, verbose_name='descrição')
+    workshops = models.ManyToManyField(Workshop, blank=False, verbose_name='workshops')
+    status = models.CharField(blank=False, max_length=2, choices=STATUS, verbose_name='Status')
 
 
 # Delete file from the given path
