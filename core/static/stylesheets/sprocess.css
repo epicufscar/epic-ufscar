@@ -1,0 +1,99 @@
+#sprocess a, #sprocess a:link, #sprocess a:visited,
+#sprocess a:hover, #sprocess a:active {
+    color: #ffffff;
+}
+
+#sprocess h2:first-child {
+    border-top: 2px solid #ff8130;
+    padding: 15px 0 0;
+    margin: 10px 0;
+}
+
+#sprocess .process-info {
+    margin-bottom: 30px;
+    text-indent: 30px;
+    text-align: justify;
+}
+
+#sprocess .process-info li {
+    text-indent: 0;
+}
+
+#sprocess .process-info .fa {
+    margin-left: -55px !important;
+}
+
+#sprocess .file-download,
+#sprocess .form-link {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+#sprocess .file-download a {
+    color: #467490;
+    font-weight: bold;
+}
+
+#sprocess .file-download a .fa {
+    color: #ff8130;
+}
+
+#sprocess .file-download a:hover {
+    color: #444444 !important;
+}
+
+#sprocess .step {
+    outline: 2px solid #ccc;
+    padding: 25px;
+    margin-top: 10px;
+
+    -webkit-box-shadow: 0px 0px 13px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 13px -2px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 13px -2px rgba(0, 0, 0, 0.75);
+
+}
+
+#sprocess .step-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #467490;
+}
+
+#sprocess .step-timing,
+#sprocess .step-results {
+    padding: 0 5px;
+}
+
+#sprocess .step-results {
+    margin-top: 25px;
+    border-top: 1px solid #999;
+    padding-top: 5px;
+}
+
+#sprocess .fa {
+    margin: 0 5px;
+}
+
+#sprocess .EB {
+    color: #cccccc !important;
+}
+
+#sprocess .EB > .step-title {
+    color: #cccccc !important;
+}
+
+#sprocess .EN {
+    border-top: 2px solid #467490;
+}
+
+#sprocess .EN > .step-title {
+    color: #467490 !important;
+}
+
+#sprocess .EA {
+    border-top: 2px solid #ff8130;
+}
+
+#sprocess .EA > .step-title {
+    color: #ff8130 !important;
+}

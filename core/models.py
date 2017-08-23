@@ -137,10 +137,54 @@ class Supporters(models.Model):
     value = models.FloatField(blank=False, verbose_name='valor')
     start_date = models.DateField(blank=False, null=True, verbose_name='data de início')
     end_date = models.DateField(blank=True, null=True, verbose_name='data de fim')
-    status = models.CharField(blank=False, max_length=2, choices=STATUS, verbose_name='Status')
+    status = models.CharField(blank=False, max_length=2, choices=STATUS, verbose_name='status')
     pay_date = models.DateField(blank=False, null=True, verbose_name='data de pagamento')
     image = models.ImageField(blank=False, upload_to='core/static/images/supporters/', verbose_name='logo')
     notes = models.TextField(blank=True, verbose_name='anotações')
+
+
+# SELECTION PROCESS: models selection processes information
+class SelectionProcess(models.Model):
+    class Meta:
+        verbose_name = 'processo seletivo'
+        verbose_name_plural = 'processos seletivos'
+
+    def __str__(self):
+        return self.id + ' (' + str(self.status) + ')'
+
+    STATUS = (
+        ('EB', 'Em Breve'),
+        ('EA', 'Em Andamento'),
+        ('EN', 'Encerrado')
+    )
+
+    id = models.CharField(primary_key=True, blank=False, max_length=10, verbose_name='processo ID')
+    status = models.CharField(blank=False, max_length=2, choices=STATUS, verbose_name='status')
+    application = models.URLField(blank=False, max_length=100, verbose_name='link formulário')
+    announcement = models.FileField(blank=False, upload_to='core/static/files/editais/', verbose_name='edital')
+    notes = models.TextField(blank=False, verbose_name='texto da página')
+
+
+# SELECTION PROCESS STEP: stores info for each step in the selection process
+class SelectionProcessStep(models.Model):
+    class Meta:
+        verbose_name = 'processo seletivo - etapa'
+        verbose_name_plural = 'processo seletivo - etapas'
+
+    def __str__(self):
+        return self.process.id + ' - ' + self.phase + ' (' + str(self.status) + ')'
+
+    STATUS = (
+        ('EB', 'Em Breve'),
+        ('EA', 'Em Andamento'),
+        ('EN', 'Encerrada')
+    )
+
+    process = models.ForeignKey(SelectionProcess, blank=False, verbose_name='processo')
+    phase = models.CharField(blank=False, max_length=100, verbose_name='título da etapa')
+    date = models.CharField(blank=False, max_length=100, verbose_name='datas e horários')
+    status = models.CharField(blank=False, max_length=2, choices=STATUS, verbose_name='status')
+    notes = models.TextField(blank=True, verbose_name='resultados')
 
 
 # Delete file from the given path
@@ -175,3 +219,25 @@ def delete_old_image(sender, instance, **kwargs):
 def delete_file(sender, instance, *args, **kwargs):
     if instance.image:
         _delete_file_(instance.image.path)
+
+
+# Backup announcement's current path for potential deletion or update
+@receiver(models.signals.post_init, sender=SelectionProcess)
+def backup_announcement_path(sender, instance, **kwargs):
+    if instance.announcement:
+        instance._current_announcement_file = instance.announcement.path
+
+
+# Delete old file in case of updating an announcement
+@receiver(models.signals.post_save, sender=SelectionProcess)
+def delete_old_image(sender, instance, **kwargs):
+    if not instance.announcement or (instance.announcement and hasattr(instance, '_current_announcement_file') and instance.announcement.path != instance._current_announcement_file):
+        if hasattr(instance, '_current_announcement_file'):
+            _delete_file_(instance._current_announcement_file)
+
+
+# Delete file when an image is not needed anymore
+@receiver(models.signals.post_delete, sender=SelectionProcess)
+def delete_file(sender, instance, *args, **kwargs):
+    if instance.announcement:
+        _delete_file_(instance.announcement.path)

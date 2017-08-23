@@ -32,12 +32,12 @@
     border-radius: 0 !important;
 }
 
-#menu .nav-item {
-    padding: 15px 10px !important;
-    color: #444444 !important;
+#menu .nav-link, #menu .dropdown-item {
+    padding: 15px 10px;
+    color: #444444;
 }
 
-#menu .nav-item:hover {
+#menu .nav-link:hover, #menu .dropdown-item:hover {
     background-color: #444444;
     color: #ffffff !important;
 }
@@ -48,7 +48,7 @@
         padding: 80px 0 10px 25px;
     }
 
-    #menu .nav-item {
+    #menu .nav-link, #menu .dropdown-item {
         padding: 7px 10px !important;
         border-top: 1px dotted #dddddd;
     }
