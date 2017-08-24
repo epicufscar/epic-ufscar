@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^contato/$', contact, name='contact'),
     url(r'^apoio/', supporters, name='supporters'),
     url(r'^cursos/', courses, name='courses'),
+    url(r'^processo/2017/1/', sprocess_2017_1, name='sprocess_2017_1'),
 ]

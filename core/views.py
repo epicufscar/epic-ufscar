@@ -73,3 +73,13 @@ def contact(request):
 def courses(request):
     data = {}
     return render(request, 'core/courses.html', data)
+
+
+def sprocess_2017_1(request):
+    sprocess = SelectionProcess.objects.get(id__istartswith='2017.1')
+    phases = SelectionProcessStep.objects.filter(process=sprocess.id).order_by('id')
+    data = {
+        'process': sprocess,
+        'phases': phases
+    }
+    return render(request, 'core/sprocesses/sprocess_2017_1.html', data)
