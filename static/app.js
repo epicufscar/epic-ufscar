@@ -12,6 +12,7 @@ import '../core/static/stylesheets/supporters.css';
 import '../core/static/stylesheets/contact-forms.css';
 import '../core/static/stylesheets/team.css'
 import '../core/static/stylesheets/sprocess.css'
+import '../core/static/stylesheets/courses.css'
 
 import '../core/static/javascripts/pricing.js';
 import '../core/static/javascripts/supporters.js';

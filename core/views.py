@@ -71,7 +71,16 @@ def contact(request):
 
 
 def courses(request):
-    data = {}
+    coming_workshops = Workshop.objects.filter(status__exact='EB')
+    active_workshops = Workshop.objects.filter(status__exact='EA')
+    past_workshops = Workshop.objects.filter(status__exact='EN')
+    workshop_groups = WorkshopGroupClass.objects.all()
+    data = {
+        'coming_workshops': coming_workshops,
+        'active_workshops': active_workshops,
+        'past_workshops': past_workshops,
+        'workshop_groups': workshop_groups
+    }
     return render(request, 'core/courses.html', data)
 
 
