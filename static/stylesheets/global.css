@@ -5,6 +5,7 @@ body {
 
 a, a:hover, a:visited, a:link, a:active {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .app_component {
@@ -16,7 +17,7 @@ a, a:hover, a:visited, a:link, a:active {
     margin: 0;
     border: 0;
     border-radius: 0;
-    font-weight: bold;
+    font-weight: bold !important;
 }
 
 .btn-half {
@@ -52,6 +53,7 @@ a, a:hover, a:visited, a:link, a:active {
     background-color: #467490;
     padding: 10px 25px;
     border-bottom: 4px solid #ff8130;
+    font-weight: bold !important;
 }
 
 .btn-epic:hover {

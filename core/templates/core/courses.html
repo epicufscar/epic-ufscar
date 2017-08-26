@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load project_tags %}
+
+{% block title %}Cursos{% endblock title %}
+
+{% block body %}
+    <main id="courses" class="app_component">
+       <div class="container">
+            <div class="row">
+
+                <!-- COMING WORKSHOPS -->
+                {% if coming_workshops %}
+                    <div class="sec col-lg-12">
+                        <div class="row">
+                            <h2 class="col-lg-12">EM BREVE</h2>
+                            {% for wk in coming_workshops %}
+                                {% include 'core/_workshops.html' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+
+                <!-- ACTIVE WORKSHOPS -->
+                {% if active_workshops %}
+                    <div class="sec col-lg-12">
+                        <div class="row">
+                            <h2 class="col-lg-12">EM ANDAMENTO</h2>
+                            {% for wk in active_workshops %}
+                                {% include 'core/_workshops.html' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+
+                <!-- PAST WORKSHOPS -->
+                {% if past_workshops %}
+                    <div class="sec col-lg-12">
+                        <div class="row">
+                            <h2 class="col-lg-12">ENCERRADOS</h2>
+                            {% for wk in past_workshops %}
+                                {% include 'core/_workshops.html' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+           </div>
+       </div>
+    </main>
+{% endblock body %}

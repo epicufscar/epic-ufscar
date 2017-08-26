@@ -1,0 +1,80 @@
+{% load project_tags %}
+
+<div class="col-lg-6">
+    <div class="row wk">
+        <div class="wk-title {{ wk.status }}">
+            <a class="wk-details" data-toggle="modal" data-target="#wk-modal-{{ wk.id }}">
+                <div>
+                    {% if wk.status == 'EB' %}<i class="fa fa-clock-o"></i>&nbsp;&nbsp;
+                    {% elif wk.status == 'EA' %}<i class="fa fa-spinner"></i> &nbsp;
+                    {% elif wk.status == 'EN' %}<i class="fa fa-check"></i> &nbsp;
+                    {% endif %}
+                    {{ wk.title }}
+                </div>
+            </a>
+        </div>
+        {% if wk.specialization %}
+            <div class="specialization">
+                {{ wk.specialization }}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- WORKSHOP DETAILS MODAL -->
+<div class="modal fade" id="wk-modal-{{ wk.id }}" tabindex="-1" role="dialog" aria-labelledby="wk-modal-label-{{ wk.id }}">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="wk-modal-label-{{ wk.id }}"></h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="wk-description">
+                    <h2>{{ wk.title }}</h2>
+                    <p>{{ wk.description|safe }}</p>
+
+                    <h3>Quando? Onde?</h3>
+                    {{ wk.dates_notes }}
+                    <br><br>
+
+                    <div class="row">
+                        {% for group in workshop_groups|in_workshop_groups:wk %}
+                            <div class="col wk-group">
+                                {% if group.group %}
+                                    <b>{{ group.group }}</b><br><br>
+                                {% endif %}
+
+                                {{ group.details|safe }}
+
+                                {% if wk.status == 'EB' %}
+                                    {% if group.application %}
+                                        <a href="{{ group.application }}" target="_blank" class="btn-epic wk-btn-apply">ME INSCREVER</a>
+                                    {% else %}
+                                        <div class="wk-btn-apply wk-btn-apply-off">EM BREVE</div>
+                                    {% endif %}
+                                {% elif wk.status == 'EA' %}
+                                    <div class="wk-btn-apply wk-btn-apply-off">EM ANDAMENTO</div>
+                                {% elif wk.status == 'EN' %}
+                                    <div class="wk-btn-apply wk-btn-apply-off">ENCERRADO</div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <h3>Instrutores:</h3>
+                    {% for instrutor in wk.instructors.all %}
+                        <li> {{ instrutor }} </li>
+                    {% endfor %}
+
+                    {% if wk.helpers %}
+                        <h3>Auxiliares:</h3>
+                        {% for aux in wk.helpers.all %}
+                            <li> {{ aux }} </li>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

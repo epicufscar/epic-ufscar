@@ -1,5 +1,4 @@
 $(".btn-go-support").on("click", function () {
-    console.log($(this).data("action"));
     if($(this).data("action") != "DOAÇÃO") {
         $("#subject").val($(this).data("action"));
         $("#message").val("Olá, \n\n" +

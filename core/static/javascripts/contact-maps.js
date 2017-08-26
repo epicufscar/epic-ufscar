@@ -18,7 +18,6 @@ $(document).ready(function () {
         var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            icon: false,
             visible: false,
         });
 

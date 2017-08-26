@@ -36,6 +36,7 @@ class ImageContent(models.Model):
 # MEMBERS: models the team members' information
 class Members(models.Model):
     class Meta:
+        ordering = ['full_name']
         verbose_name = 'membro'
         verbose_name_plural = 'membros'
 
@@ -60,7 +61,7 @@ class Members(models.Model):
     )
 
     full_name = models.CharField(blank=False, max_length=100, verbose_name='nome completo')
-    email = models.CharField(blank=True, max_length=100, verbose_name='email')
+    email = models.EmailField(blank=True, max_length=100, verbose_name='email')
     linkedin = models.CharField(blank=True, max_length=50, verbose_name='LinkedIn ID')
     github = models.CharField(blank=True, max_length=50, verbose_name='GitHub ID')
     program = models.CharField(blank=True, max_length=3, choices=PROGRAM, verbose_name='curso')
@@ -74,8 +75,9 @@ class Members(models.Model):
 # PLAN TYPE: defines financial plans types
 class PlanType(models.Model):
     class Meta:
-        verbose_name = 'tipo de plano de apoio'
-        verbose_name_plural = 'tipos de plano de apoio'
+        ordering = ['type']
+        verbose_name = 'plano de apoio - tipo'
+        verbose_name_plural = 'plano de apoio - tipos'
 
     def __str__(self):
         return self.type
@@ -87,8 +89,8 @@ class PlanType(models.Model):
 class PlanBenefit(models.Model):
     class Meta:
         ordering = ['priority']
-        verbose_name = 'benefício de plano de apoio'
-        verbose_name_plural = 'benefícios de plano de apoio'
+        verbose_name = 'plano de apoio - benefício'
+        verbose_name_plural = 'plano de apoio - benefícios'
 
     def __str__(self):
         return str(self.priority) + ' - [' + self.type.type + '] ' + self.benefit
@@ -101,6 +103,7 @@ class PlanBenefit(models.Model):
 # PLAN: lists princing plans for financial support
 class Plan(models.Model):
     class Meta:
+        ordering = ['type']
         verbose_name = 'plano de apoio'
         verbose_name_plural = 'planos de apoio'
 
@@ -116,6 +119,7 @@ class Plan(models.Model):
 # SUPPORTER: models financial supporters
 class Supporters(models.Model):
     class Meta:
+        ordering = ['name']
         verbose_name = 'Apoiador'
         verbose_name_plural = 'Apoiadores'
 
@@ -130,9 +134,9 @@ class Supporters(models.Model):
 
     name = models.CharField(blank=False, max_length=100, verbose_name='nome')
     brand = models.CharField(blank=True, max_length=100, verbose_name='organização')
-    email = models.CharField(blank=False, max_length=100, verbose_name='email')
+    email = models.EmailField(blank=False, max_length=100, verbose_name='email')
     fone = models.CharField(blank=True, max_length=20, verbose_name='telefone')
-    page = models.CharField(blank=True, max_length=100, verbose_name='site')
+    page = models.URLField(blank=True, max_length=100, verbose_name='site')
     plan = models.ForeignKey(Plan, blank=False, verbose_name='plano')
     value = models.FloatField(blank=False, verbose_name='valor')
     start_date = models.DateField(blank=False, null=True, verbose_name='data de início')
@@ -141,6 +145,60 @@ class Supporters(models.Model):
     pay_date = models.DateField(blank=False, null=True, verbose_name='data de pagamento')
     image = models.ImageField(blank=False, upload_to='core/static/images/supporters/', verbose_name='logo')
     notes = models.TextField(blank=True, verbose_name='anotações')
+
+
+# SPECIALIZATION: groups workshops into a single theme
+class Specialization(models.Model):
+    class Meta:
+        ordering = ['title']
+        verbose_name = 'trilha'
+        verbose_name_plural = 'trilhas'
+
+    def __str__(self):
+        return self.title
+
+    title = models.CharField(blank=False, max_length=100, verbose_name='título')
+
+
+# WORKSHOP: models workshops information
+class Workshop(models.Model):
+    class Meta:
+        ordering = ['title']
+        verbose_name = 'workshop'
+        verbose_name_plural = 'workshops'
+
+    def __str__(self):
+        return self.title
+
+    STATUS = (
+        ('EB', 'Em Breve'),
+        ('EA', 'Em Andamento'),
+        ('EN', 'Encerrado')
+    )
+
+    title = models.CharField(blank=False, max_length=100, verbose_name='título')
+    description = models.TextField(blank=False, verbose_name='descrição')
+    status = models.CharField(blank=False, max_length=2, choices=STATUS, verbose_name='status')
+    dates_notes = models.CharField(blank=True, max_length=100, verbose_name='notas sobre datas e turmas')
+    instructors = models.ManyToManyField(Members, blank=False, related_name='%(class)s_workshop_instructors', verbose_name='instrutores')
+    helpers = models.ManyToManyField(Members, blank=True, related_name='%(class)s_workshop_helpers', verbose_name='auxiliares')
+    specialization = models.ForeignKey(Specialization, blank=True, null=True, verbose_name='trilha?')
+
+
+# WORKSHOP GROUP CLASS: models different classes for each workshop
+class WorkshopGroupClass(models.Model):
+    class Meta:
+        ordering = ['workshop']
+        verbose_name = 'workshop - turma'
+        verbose_name_plural = 'workshops - turmas'
+
+    def __str__(self):
+        return self.workshop.title + ' - ' + self.group
+
+    workshop = models.ForeignKey(Workshop, blank=False, verbose_name='workshop')
+    group = models.CharField(blank=True, max_length=100, verbose_name='turma')
+    details = models.TextField(blank=False, verbose_name='dia, hora, local')
+    application = models.URLField(blank=True, max_length=100, verbose_name='link formulário')
 
 
 # SELECTION PROCESS: models selection processes information
