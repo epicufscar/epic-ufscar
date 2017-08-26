@@ -32,6 +32,10 @@
     box-shadow: 0 10px 22px -13px rgba(0, 0, 0, 0.75);
 }
 
+#courses .wk-title:hover {
+    cursor: pointer;
+}
+
 #courses .modal .wk-description .wk-btn-apply {
     width: 50%;
     color: #ffffff !important;
