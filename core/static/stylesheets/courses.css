@@ -1,0 +1,110 @@
+#courses .sec {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-top: 1px dotted #467490;
+    padding-top: 10px;
+}
+
+#courses .wk {
+    margin: 0 0 30px;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+#courses .specialization {
+    background-color: #e57743;
+    color: #ffffff;
+    padding: 2px 5px;
+    font-size: 0.8em;
+    position: absolute;
+    right: 3%; top: -7px;
+}
+
+#courses .wk-title {
+    background-color: #fbe8aa;
+    padding: 15px 15px 10px 15px;
+    width: 100%;
+    font-size: larger;
+
+    -webkit-box-shadow: 0 10px 22px -13px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 10px 22px -13px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 10px 22px -13px rgba(0, 0, 0, 0.75);
+}
+
+#courses .modal .wk-description .wk-btn-apply {
+    width: 50%;
+    color: #ffffff !important;
+    background-color: #467490;
+    position: absolute;
+    bottom: -25px;
+    left: 25%;
+}
+
+#courses .modal .wk-description .wk-btn-apply-off {
+    color: #467490 !important;
+    background-color: #f2f2f2;
+    padding: 10px 25px;
+}
+
+#courses .modal .wk-description .wk-btn-apply:hover {
+    color: #ffffff !important;
+    background-color: #444444;
+}
+
+#courses .fa {
+    padding: 0 5px;
+}
+
+#courses .EA {
+    background-color: #467490;
+    color: #ffffff;
+}
+
+#courses .EN {
+    background-color: #f2f2f2;
+    color: #555555;
+}
+
+#courses .EB {
+    background-color: #fbe8aa;
+    color: #444444;
+}
+
+#courses .wk-title:hover {
+    color: #ffffff !important;
+    background-color: #444444;
+}
+
+
+#courses .modal .wk-description {
+    padding: 0 30px 10px;
+}
+
+#courses .modal .wk-description p {
+    text-align: justify;
+}
+
+#courses .modal .wk-description h2 {
+    color: #ff8130;
+}
+
+#courses .modal .wk-description h3 {
+    color: #467490;
+    margin-top: 30px;
+}
+
+#courses .modal .wk-description .wk-group {
+    padding: 10px 0 20px;
+    border: 1px solid #ccc;
+    margin: 0 10px 40px;
+    text-align: center;
+    position: relative;
+}
+
+@media (max-width: 992px) {
+    #courses .modal .wk-description .wk-btn-apply {
+        width: 90% !important;
+        left: 5%;
+    }
+}

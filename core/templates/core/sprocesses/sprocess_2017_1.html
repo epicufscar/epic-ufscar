@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% load imagename %}
+{% load project_tags %}
 
 {% block title %}Processo Seletivo 2017.1{% endblock title %}
 
@@ -28,9 +28,11 @@
                         </div>
 
                         <!-- BUTTON LINK FOR APPLYING -->
-                        <div class="form-link">
-                            <a href="{{ process.application }}" target="_blank" class="btn-epic btn-block">FAZER INSCRIÇÃO</a>
-                        </div>
+                        {% if phases.first.status == 'EA' %}
+                            <div class="form-link">
+                                <a href="{{ process.application }}" target="_blank" class="btn-epic btn-block">ME INSCREVER</a>
+                            </div>
+                        {% endif %}
                     </section>
                 </div>
 
