@@ -31,7 +31,7 @@ def team(request):
 
 
 def supporters(request):
-    plans = Plan.objects.all()
+    plans = Plan.objects.all().order_by('price')
     data = {
         'plans_continuous': plans.filter(type=PlanType.objects.get(type__exact='Contínuo')),
         'plans_workshop': plans.filter(type=PlanType.objects.get(type__exact='Workshop')),
@@ -71,11 +71,13 @@ def contact(request):
 
 
 def courses(request):
+    open_applications = Workshop.objects.filter(status__exact='IA')
     coming_workshops = Workshop.objects.filter(status__exact='EB')
     active_workshops = Workshop.objects.filter(status__exact='EA')
     past_workshops = Workshop.objects.filter(status__exact='EN')
     workshop_groups = WorkshopGroupClass.objects.all()
     data = {
+        'open_applications': open_applications,
         'coming_workshops': coming_workshops,
         'active_workshops': active_workshops,
         'past_workshops': past_workshops,
