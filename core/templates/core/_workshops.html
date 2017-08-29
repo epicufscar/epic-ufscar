@@ -5,8 +5,9 @@
         <div class="wk-title {{ wk.status }}">
             <a class="wk-details" data-toggle="modal" data-target="#wk-modal-{{ wk.id }}">
                 <div>
-                    {% if wk.status == 'IA' %}<i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;
+                    {% if wk.status == 'IA' %}<i class="fa fa-pencil-square-o"></i> &nbsp;
                     {% elif wk.status == 'EB' %}<i class="fa fa-clock-o"></i> &nbsp;
+                    {% if wk.status == 'EB' %}<i class="fa fa-clock-o"></i> &nbsp;
                     {% elif wk.status == 'EA' %}<i class="fa fa-spinner"></i> &nbsp;
                     {% elif wk.status == 'EN' %}<i class="fa fa-check"></i> &nbsp;
                     {% endif %}
