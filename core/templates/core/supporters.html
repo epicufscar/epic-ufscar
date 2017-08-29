@@ -48,11 +48,10 @@
                                 {% for benefit in plan.benefits.all %}
                                     <p class="plan-benefit">{{ benefit.benefit }}</p>
                                 {% endfor %}
-                                <button type="button" class="btn btn-go-support btn-choose btn-epic btn-block"
-                                        data-toggle="modal" data-target="#contact-modal"
-                                        data-action="APOIO CONTÍNUO - {{ plan.name }}, R${{ plan.price|floatformat:0 }}/mês">
+                                <a href="{{ plan.pgcode }}" target="_blank" class="btn btn-go-support btn-choose btn-epic btn-block">
                                     ESCOLHER
-                                </button>
+                                </a>
+                                <img class="pg-seguro-logo" src="http://files.serranasst.com.br/200000590-e6f8ce7f49/700/Logo_PagSeguro.png" title="PagSeguro">
                             </div>
                             {% endfor %}
                         </div>
@@ -64,7 +63,8 @@
                             <p class="plan-description">
                                 Esta modalidade é ideal para aqueles que querem treinar futuros profissionais em uma
                                 área específica, uma vez que ela faz sentido para sua organização ou você acredita na
-                                importância da mesma. Assim, você apoia as atividades envolvidas num único Workshop.
+                                importância da mesma. Assim, você apoia as atividades envolvidas num único Workshop,
+                                como a produção de materiais, coffee breaks e ajuda de custo aos instrutores ou convidados.
                                 Workshops são cursos pontuais, de duração variada (usualmente entre 4h e 16h), e que
                                 podem fazer parte de Trilhas específicas. Por exemplo, uma Trilha de <i>"Testes de
                                 Software"</i> pode incluir os Workshops <i>"Planejamento de Testes"</i> e <i>"Teste
@@ -83,11 +83,10 @@
                                 {% for benefit in plan.benefits.all %}
                                     <p class="plan-benefit">{{ benefit.benefit }}</p>
                                 {% endfor %}
-                                <button type="button" class="btn btn-go-support btn-choose btn-epic btn-block"
-                                        data-toggle="modal" data-target="#contact-modal"
-                                        data-action="APOIO WORKSHOP - {{ plan.name }}, R${{ plan.price|floatformat:0 }} (único)">
+                                <a href="{{ plan.pgcode }}" target="_blank" class="btn btn-go-support btn-choose btn-epic btn-block">
                                     ESCOLHER
-                                </button>
+                                </a>
+                                <img class="pg-seguro-logo" src="http://files.serranasst.com.br/200000590-e6f8ce7f49/700/Logo_PagSeguro.png" title="PagSeguro">
                             </div>
                             {% endfor %}
                         </div>
@@ -97,13 +96,13 @@
                     <section id="donation">
                         <div class="row">
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-7">
                                 <!-- TEXTUAL INFORMATION -->
                                 <div>
                                     <p class="plan-description">
                                         Doando qualquer valor para a EPiC, você estará facilitando a criação de
-                                        materiais, compra de recursos necessários, e ajuda de custo aos palestrantes
-                                        convidados para nossos cursos.
+                                        materiais, compra de recursos necessários, coffee breaks e ajuda de custo
+                                        aos possíveis palestrantes ou instrutores convidados para nossos cursos.
                                     </p>
                                     <p class="plan-description">
                                         Nós e nossos alunos ficaremos gratos, e também seu nome (ou sua marca)
@@ -115,26 +114,38 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-7">
-                                <!-- DONATION SLIDER -->
-                                <div class="form-group">
-                                    {% csrf_token %}
-                                    <h2>QUANTO VOCÊ PODE DOAR?</h2>
-                                    <div class="range-slider">
-                                        <input class="range-slider__range" type="range" value="25" min="1" step="1" max="100">
-                                        <span class="range-slider__value">25</span>
-                                    </div>
-                                    <hr/>
-                                    <button type="button" class="btn btn-go-support btn-half btn-epic float-right"
+                            <div class="col-lg-5">
+                                <div class="form-group text-center">
+                                    <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+                                    <form action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post">
+                                    <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                                    <input type="hidden" name="currency" value="BRL" />
+                                    <input type="hidden" name="receiverEmail" value="renanpeixotox@gmail.com" />
+                                    <input type="hidden" name="iot" value="button" />
+                                    <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/doacoes/205x30-doar-laranja.gif"
+                                           name="submit" height="30px"/>
+                                    </form>
+                                    <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+                                    <h3>ou</h3>
+                                    <button type="button" class="btn btn-go-support btn-half btn-epic"
                                             data-toggle="modal" data-target="#contact-modal"
-                                            data-action="DOAÇÃO">
-                                        CONFIRMAR
+                                            data-action="OUTRO">
+                                        COMBINAR OUTRA FORMA
                                     </button>
                                 </div>
                              </div>
                         </div>
                     </section>
                 </div>
+
+                <div class="well">
+                    <p>
+                        Não se preocupe! Garantimos que seu investimento será bem usado e lhe deixaremos a par de como tudo foi gasto.
+                        Além disso, <b>caso queira ensinar ou palestrar</b> sobre algum tema ou tenha <b>dúvidas</b> sobre os planos apresentados,
+                        <b><a href="{% url 'contact' %}" class="link-talker">entre em contato conosco!</a></b>
+                    </p>
+                </div>
+
                 <br>
 
                 <!-- CONTACT FORM MODAL -->
@@ -142,7 +153,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h2 class="modal-title" id="contact-modal-label">ENTRE EM CONTATO</h2>
+                                <h2 class="modal-title" id="contact-modal-label">COMBINAR DOAÇÃO</h2>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
                             </div>
                             <!-- CONTACT FORM -->
@@ -152,7 +163,7 @@
                                     <div class="form-group"><input class="form-control" name="name" id="name" placeholder="Seu nome"></div>
                                     <div class="form-group"><input class="form-control" type="email" name="email" id="email" placeholder="Seu e-mail"></div>
                                     <div class="form-group"><input class="form-control" name="company" id="company" placeholder="Organização"></div>
-                                    <div class="form-group"><input class="form-control" name="subject" id="subject" placeholder="Assunto" readonly></div>
+                                    <div class="form-group"><input class="form-control" name="subject" id="subject" placeholder="Assunto"></div>
                                     <div class="form-group"><textarea class="form-control" name="message" id="message" rows="7" placeholder="Mensagem"></textarea></div>
                                 </div>
                                 <div class="modal-footer">
@@ -162,7 +173,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

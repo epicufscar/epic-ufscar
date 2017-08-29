@@ -13,8 +13,8 @@
 }
 
 #courses .specialization {
-    background-color: #e57743;
-    color: #ffffff;
+    background-color: #f6f6f6;
+    color: #444444;
     padding: 2px 5px;
     font-size: 0.8em;
     position: absolute;
@@ -58,6 +58,11 @@
 
 #courses .fa {
     padding: 0 5px;
+}
+
+#courses .IA {
+    background-color: #bee5c2;
+    color: #444444;
 }
 
 #courses .EA {

@@ -1,14 +1,7 @@
-$(".btn-go-support").on("click", function () {
-    if($(this).data("action") != "DOAÇÃO") {
-        $("#subject").val($(this).data("action"));
+$(".btn-go-support, .link-talker").on("click", function () {
+    if($(this).data("action") == "OUTRO") {
+        $("#subject").val("+DOAÇÃO");
         $("#message").val("Olá, \n\n" +
-            "Gostaria de apoiar a EPiC com suas atividades por meio do PLANO " + $(this).data("action") + ".");
-    }
-    else {
-        $("#subject").val($(this).data("action") + " - " + $(".range-slider__value").html());
-
-        $("#message").val("Olá, \n\n" +
-            "Gostaria de doar o valor de " + $(".range-slider__value").html() +
-            " para ajudar nas atividades da EPiC!");
+        "Gostaria de fazer uma doação para ajudar com as atividades da EPiC!");
     }
 });
