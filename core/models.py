@@ -169,6 +169,7 @@ class Workshop(models.Model):
         return self.title
 
     STATUS = (
+        ('IA', 'Inscrições Abertas'),
         ('EB', 'Em Breve'),
         ('EA', 'Em Andamento'),
         ('EN', 'Encerrado')

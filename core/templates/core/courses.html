@@ -8,6 +8,18 @@
        <div class="container">
             <div class="row">
 
+                <!-- OPEN APPLICATIONS -->
+                {% if open_applications %}
+                    <div class="sec col-lg-12">
+                        <div class="row">
+                            <h2 class="col-lg-12">INSCRIÇÕES ABERTAS</h2>
+                            {% for wk in open_applications %}
+                                {% include 'core/_workshops.html' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
                 <!-- COMING WORKSHOPS -->
                 {% if coming_workshops %}
                     <div class="sec col-lg-12">
