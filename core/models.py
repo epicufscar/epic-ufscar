@@ -114,6 +114,7 @@ class Plan(models.Model):
     name = models.CharField(blank=False, max_length=25, verbose_name='nome')
     price = models.FloatField(blank=False, verbose_name='valor')
     benefits = models.ManyToManyField(PlanBenefit, blank=False, verbose_name='benefícios')
+    pgcode = models.URLField(blank=True, max_length=50, verbose_name='URL PagSeguro')
 
 
 # SUPPORTER: models financial supporters
@@ -139,10 +140,7 @@ class Supporters(models.Model):
     page = models.URLField(blank=True, max_length=100, verbose_name='site')
     plan = models.ForeignKey(Plan, blank=False, verbose_name='plano')
     value = models.FloatField(blank=False, verbose_name='valor')
-    start_date = models.DateField(blank=False, null=True, verbose_name='data de início')
-    end_date = models.DateField(blank=True, null=True, verbose_name='data de fim')
     status = models.CharField(blank=False, max_length=2, choices=STATUS, verbose_name='status')
-    pay_date = models.DateField(blank=False, null=True, verbose_name='data de pagamento')
     image = models.ImageField(blank=False, upload_to='core/static/images/supporters/', verbose_name='logo')
     notes = models.TextField(blank=True, verbose_name='anotações')
 

@@ -31,7 +31,7 @@ def team(request):
 
 
 def supporters(request):
-    plans = Plan.objects.all()
+    plans = Plan.objects.all().order_by('price')
     data = {
         'plans_continuous': plans.filter(type=PlanType.objects.get(type__exact='Contínuo')),
         'plans_workshop': plans.filter(type=PlanType.objects.get(type__exact='Workshop')),

@@ -14,7 +14,6 @@ import '../core/static/stylesheets/team.css'
 import '../core/static/stylesheets/sprocess.css'
 import '../core/static/stylesheets/courses.css'
 
-import '../core/static/javascripts/pricing.js';
 import '../core/static/javascripts/supporters.js';
 import '../core/static/javascripts/contact-maps.js';
 import '../core/static/javascripts/forms-validation.js';
