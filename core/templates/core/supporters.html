@@ -14,7 +14,7 @@
                     <i class="fa fa-handshake-o fa-lg"></i>SEJA UM APOIADOR
                 </a>
             </div>
-            <div id="plans" class="collapse">
+            <div id="plans" class="collapse show">
                 <div class="plan-tabs">
 
                     <!-- PLANS TYPES NAV MENU -->
@@ -177,24 +177,24 @@
         </div>
     </section>
 
-    <!-- CONTINUOUS ACTIVE SUPPORTERS -->
-    <section id="supporters" class="app_component">
-        <div class="container">
-            <section>
-                <h2>ESTES SÃO NOSSOS APOIADORES</h2>
-                <div class="card-columns">
-                    {% static 'images/supporters/' as baseURL %}
-                    {% for supporter in supporters %}
-                        <div class="card grow">
-                            <a href="{{ supporter.page }}" target="_blank">
-                                <img class="supporter" src="{{ baseURL }}{{ supporter.image|imagename }}">
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
-            </section>
-        </div>
-    </section>
+{#    <!-- CONTINUOUS ACTIVE SUPPORTERS -->#}
+{#    <section id="supporters" class="app_component">#}
+{#        <div class="container">#}
+{#            <section>#}
+{#                <h2>ESTES SÃO NOSSOS APOIADORES</h2>#}
+{#                <div class="card-columns">#}
+{#                    {% static 'images/supporters/' as baseURL %}#}
+{#                    {% for supporter in supporters %}#}
+{#                        <div class="card grow">#}
+{#                            <a href="{{ supporter.page }}" target="_blank">#}
+{#                                <img class="supporter" src="{{ baseURL }}{{ supporter.image|imagename }}">#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            </section>#}
+{#        </div>#}
+{#    </section>#}
 
 {% endblock body %}
 

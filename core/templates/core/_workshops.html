@@ -36,7 +36,9 @@
                     <p>{{ wk.description|safe }}</p>
 
                     <h3>Quando? Onde?</h3>
-                    {{ wk.dates_notes }}
+                    {% if wk.dates_notes %}
+                        {{ wk.dates_notes }}
+                    {% endif %}
                     <br><br>
 
                     <div class="row">
