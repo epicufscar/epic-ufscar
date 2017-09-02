@@ -47,8 +47,8 @@
                                 {% endif %}
                                 {{ phase.phase }}
                             </div>
-                            <div class="step-timing">{{ phase.date }}</div>
-                            {% if phase.notes %}
+                            <div class="step-timing">{{ phase.date|safe }}</div>
+                            {% if phase.notes|safe %}
                                 <div class="step-results">
                                     {{ phase.notes|safe }}
                                 </div>
