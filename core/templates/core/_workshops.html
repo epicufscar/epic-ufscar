@@ -38,8 +38,8 @@
                     <h3>Quando? Onde?</h3>
                     {% if wk.dates_notes %}
                         {{ wk.dates_notes }}
+                        <br><br>
                     {% endif %}
-                    <br><br>
 
                     <div class="row">
                         {% for group in workshop_groups|in_workshop_groups:wk %}
@@ -63,10 +63,12 @@
                         {% endfor %}
                     </div>
 
-                    <h3>Instrutores:</h3>
-                    {% for instrutor in wk.instructors.all %}
-                        <li> {{ instrutor }} </li>
-                    {% endfor %}
+                    {% if wk.instructors %}
+                        <h3>Instrutores:</h3>
+                        {% for instrutor in wk.instructors.all %}
+                            <li> {{ instrutor }} </li>
+                        {% endfor %}
+                    {% endif %}
 
                     {% if wk.helpers %}
                         <h3>Auxiliares:</h3>

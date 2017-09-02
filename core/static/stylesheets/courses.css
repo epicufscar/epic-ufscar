@@ -13,12 +13,13 @@
 }
 
 #courses .specialization {
-    background-color: #f6f6f6;
+    background-color: #f9f9f9;
     color: #444444;
     padding: 2px 5px;
     font-size: 0.8em;
     position: absolute;
-    right: 3%; top: -7px;
+    right: 3%; top: -8px;
+    outline: 1px solid #999999;
 }
 
 #courses .wk-title {
@@ -84,7 +85,6 @@
     color: #ffffff !important;
     background-color: #444444;
 }
-
 
 #courses .modal .wk-description {
     padding: 0 30px 10px;
