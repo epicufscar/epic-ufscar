@@ -61,7 +61,8 @@
     padding: 0 5px;
 }
 
-#courses .IA {
+#courses .IA,
+#courses .VP {
     background-color: #bee5c2;
     color: #444444;
 }

@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from django.core.mail import send_mail
 from .models import *
@@ -71,7 +72,7 @@ def contact(request):
 
 
 def courses(request):
-    open_applications = Workshop.objects.filter(status__exact='IA')
+    open_applications = Workshop.objects.filter(Q(status='IA') | Q(status='VP'))
     coming_workshops = Workshop.objects.filter(status__exact='EB')
     active_workshops = Workshop.objects.filter(status__exact='EA')
     past_workshops = Workshop.objects.filter(status__exact='EN')

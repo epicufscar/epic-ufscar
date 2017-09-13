@@ -5,7 +5,7 @@
         <div class="wk-title {{ wk.status }}">
             <a class="wk-details" data-toggle="modal" data-target="#wk-modal-{{ wk.id }}">
                 <div>
-                    {% if wk.status == 'IA' %}<i class="fa fa-pencil-square-o"></i> &nbsp;
+                    {% if wk.status == 'IA' or wk.status == 'VP' %}<i class="fa fa-pencil-square-o"></i> &nbsp;
                     {% elif wk.status == 'EB' %}<i class="fa fa-clock-o"></i> &nbsp;
                     {% elif wk.status == 'EA' %}<i class="fa fa-spinner"></i> &nbsp;
                     {% elif wk.status == 'EN' %}<i class="fa fa-check"></i> &nbsp;
@@ -52,8 +52,10 @@
 
                                 {% if wk.status == 'IA' and group.application %}
                                         <a href="{{ group.application }}" target="_blank" class="btn-epic wk-btn-apply">ME INSCREVER</a>
+                                {% elif wk.status == 'VP' %}
+                                    <div class="wk-btn-apply wk-btn-apply-off">VAGAS PREENCHIDAS</div>
                                 {% elif wk.status == 'EB' %}
-                                        <div class="wk-btn-apply wk-btn-apply-off">EM BREVE</div>
+                                    <div class="wk-btn-apply wk-btn-apply-off">EM BREVE</div>
                                 {% elif wk.status == 'EA' %}
                                     <div class="wk-btn-apply wk-btn-apply-off">EM ANDAMENTO</div>
                                 {% elif wk.status == 'EN' %}
