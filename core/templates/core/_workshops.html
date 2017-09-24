@@ -65,14 +65,14 @@
                         {% endfor %}
                     </div>
 
-                    {% if wk.instructors %}
+                    {% if wk.instructors.all %}
                         <h3>Instrutores:</h3>
                         {% for instrutor in wk.instructors.all %}
                             <li> {{ instrutor }} </li>
                         {% endfor %}
                     {% endif %}
 
-                    {% if wk.helpers %}
+                    {% if wk.helpers.all %}
                         <h3>Auxiliares:</h3>
                         {% for aux in wk.helpers.all %}
                             <li> {{ aux }} </li>
