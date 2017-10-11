@@ -170,6 +170,7 @@ class Workshop(models.Model):
 
     STATUS = (
         ('IA', 'Inscrições Abertas'),
+        ('VP', 'Vagas Preenchidas'),
         ('EB', 'Em Breve'),
         ('EA', 'Em Andamento'),
         ('EN', 'Encerrado')
