@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from django.core.mail import send_mail
 from .models import *
@@ -36,8 +37,7 @@ def supporters(request):
         'plans_continuous': plans.filter(type=PlanType.objects.get(type__exact='Contínuo')),
         'plans_workshop': plans.filter(type=PlanType.objects.get(type__exact='Workshop')),
         'plans_donation': plans.filter(type=PlanType.objects.get(type__exact='Doação')),
-        'supporters': Supporters.objects.filter(
-            plan__type=PlanType.objects.get(type__exact='Contínuo')).filter(status__exact='AT')
+        'supporters': Supporters.objects.filter(status__exact='AT')
     }
     return render(request, 'core/supporters.html', data)
 
@@ -71,7 +71,7 @@ def contact(request):
 
 
 def courses(request):
-    open_applications = Workshop.objects.filter(status__exact='IA')
+    open_applications = Workshop.objects.filter(Q(status='IA') | Q(status='VP'))
     coming_workshops = Workshop.objects.filter(status__exact='EB')
     active_workshops = Workshop.objects.filter(status__exact='EA')
     past_workshops = Workshop.objects.filter(status__exact='EN')

@@ -114,7 +114,6 @@ class Plan(models.Model):
     name = models.CharField(blank=False, max_length=25, verbose_name='nome')
     price = models.FloatField(blank=False, verbose_name='valor')
     benefits = models.ManyToManyField(PlanBenefit, blank=False, verbose_name='benefícios')
-    pgcode = models.URLField(blank=True, max_length=50, verbose_name='URL PagSeguro')
 
 
 # SUPPORTER: models financial supporters
@@ -170,6 +169,7 @@ class Workshop(models.Model):
 
     STATUS = (
         ('IA', 'Inscrições Abertas'),
+        ('VP', 'Vagas Preenchidas'),
         ('EB', 'Em Breve'),
         ('EA', 'Em Andamento'),
         ('EN', 'Encerrado')
