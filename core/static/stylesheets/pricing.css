@@ -75,13 +75,6 @@
     left: 0;
 }
 
-#pricing .pg-seguro-logo {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    height: 25px;
-}
-
 #pricing .plan-tabs {
     text-align: center;
     background-color: #f6f6f6;
@@ -173,4 +166,69 @@
 
 #pricing .well .link-talker {
     color: #ff8130 !important;
+}
+
+#pricing .range-slider {
+    width: 100%;
+}
+
+#pricing .range-slider__range {
+    -webkit-appearance: none;
+    width: calc(100% - (115px));
+    height: 10px;
+    border-radius: 5px;
+    background: #d7dcdf;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+#pricing .range-slider__range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #eec70c;
+    cursor: pointer;
+    -webkit-transition: background .15s ease-in-out;
+    transition: background .15s ease-in-out;
+}
+
+#pricing .range-slider__range::-webkit-slider-thumb:hover {
+    background: #ff8130;
+}
+
+#pricing .range-slider__range:active::-webkit-slider-thumb {
+    background: #ff8130;
+}
+
+#pricing .range-slider__range::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    border-radius: 50%;
+    background: #eec70c;
+    cursor: pointer;
+    -webkit-transition: background .15s ease-in-out;
+    transition: background .15s ease-in-out;
+}
+
+#pricing .range-slider__range::-moz-range-thumb:hover {
+    background: #ff8130;
+}
+
+#pricing .range-slider__range:active::-moz-range-thumb {
+    background: #ff8130;
+}
+
+#pricing .range-slider__value {
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    color: #ffffff;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5px 10px;
+    margin-left: 8px;
+    background-color: #0d8d99;
 }

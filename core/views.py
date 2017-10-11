@@ -37,8 +37,7 @@ def supporters(request):
         'plans_continuous': plans.filter(type=PlanType.objects.get(type__exact='Contínuo')),
         'plans_workshop': plans.filter(type=PlanType.objects.get(type__exact='Workshop')),
         'plans_donation': plans.filter(type=PlanType.objects.get(type__exact='Doação')),
-        'supporters': Supporters.objects.filter(
-            plan__type=PlanType.objects.get(type__exact='Contínuo')).filter(status__exact='AT')
+        'supporters': Supporters.objects.filter(status__exact='AT')
     }
     return render(request, 'core/supporters.html', data)
 
