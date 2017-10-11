@@ -14,7 +14,7 @@
                     <i class="fa fa-handshake-o fa-lg"></i>SEJA UM APOIADOR
                 </a>
             </div>
-            <div id="plans" class="collapse show">
+            <div id="plans" class="collapse">
                 <div class="plan-tabs">
 
                     <!-- PLANS TYPES NAV MENU -->
@@ -48,10 +48,11 @@
                                 {% for benefit in plan.benefits.all %}
                                     <p class="plan-benefit">{{ benefit.benefit }}</p>
                                 {% endfor %}
-                                <a href="{{ plan.pgcode }}" target="_blank" class="btn btn-go-support btn-choose btn-epic btn-block">
+                                <button type="button" class="btn btn-go-support btn-epic btn-choose btn-block"
+                                    data-toggle="modal" data-target="#contact-modal"
+                                    data-action="APOIO CONTÍNUO - {{ plan.name }}, R$ {{ plan.price|floatformat:0 }}/mês">
                                     ESCOLHER
-                                </a>
-                                <img class="pg-seguro-logo" src="http://files.serranasst.com.br/200000590-e6f8ce7f49/700/Logo_PagSeguro.png" title="PagSeguro">
+                                </button>
                             </div>
                             {% endfor %}
                         </div>
@@ -83,10 +84,11 @@
                                 {% for benefit in plan.benefits.all %}
                                     <p class="plan-benefit">{{ benefit.benefit }}</p>
                                 {% endfor %}
-                                <a href="{{ plan.pgcode }}" target="_blank" class="btn btn-go-support btn-choose btn-epic btn-block">
+                                <button type="button" class="btn btn-go-support btn-epic btn-choose btn-block"
+                                    data-toggle="modal" data-target="#contact-modal"
+                                    data-action="APOIO WORKSHOP - {{ plan.name }}, R$ {{ plan.price|floatformat:0 }} (único)">
                                     ESCOLHER
-                                </a>
-                                <img class="pg-seguro-logo" src="http://files.serranasst.com.br/200000590-e6f8ce7f49/700/Logo_PagSeguro.png" title="PagSeguro">
+                                </button>
                             </div>
                             {% endfor %}
                         </div>
@@ -96,7 +98,7 @@
                     <section id="donation">
                         <div class="row">
 
-                            <div class="col-lg-7">
+                            <div class="col-lg-5">
                                 <!-- TEXTUAL INFORMATION -->
                                 <div>
                                     <p class="plan-description">
@@ -114,23 +116,18 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-7">
+                                <h2>QUANTO VOCÊ PODE DOAR?</h2>
+                                <div class="range-slider">
+                                    <input class="range-slider__range" type="range" value="30" min="5" step="5" max="250">
+                                    <span class="range-slider__value">25</span>
+                                </div>
+                                <hr/>
                                 <div class="form-group text-center">
-                                    <!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
-                                    <form action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post">
-                                    <!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-                                    <input type="hidden" name="currency" value="BRL" />
-                                    <input type="hidden" name="receiverEmail" value="renanpeixotox@gmail.com" />
-                                    <input type="hidden" name="iot" value="button" />
-                                    <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/doacoes/205x30-doar-laranja.gif"
-                                           name="submit" height="30px"/>
-                                    </form>
-                                    <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
-                                    <h3>ou</h3>
                                     <button type="button" class="btn btn-go-support btn-epic"
                                             data-toggle="modal" data-target="#contact-modal"
                                             data-action="OUTRO">
-                                        COMBINAR OUTRA FORMA
+                                        CONFIRMAR
                                     </button>
                                 </div>
                              </div>
@@ -153,7 +150,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h2 class="modal-title" id="contact-modal-label">COMBINAR DOAÇÃO</h2>
+                                <h2 class="modal-title" id="contact-modal-label">FALE CONOSCO</h2>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
                             </div>
                             <!-- CONTACT FORM -->
@@ -163,7 +160,7 @@
                                     <div class="form-group"><input class="form-control" name="name" id="name" placeholder="Seu nome"></div>
                                     <div class="form-group"><input class="form-control" type="email" name="email" id="email" placeholder="Seu e-mail"></div>
                                     <div class="form-group"><input class="form-control" name="company" id="company" placeholder="Organização"></div>
-                                    <div class="form-group"><input class="form-control" name="subject" id="subject" placeholder="Assunto"></div>
+                                    <div class="form-group"><input class="form-control" name="subject" id="subject" placeholder="Assunto" readonly></div>
                                     <div class="form-group"><textarea class="form-control" name="message" id="message" rows="7" placeholder="Mensagem"></textarea></div>
                                 </div>
                                 <div class="modal-footer">
@@ -177,28 +174,29 @@
         </div>
     </section>
 
-{#    <!-- CONTINUOUS ACTIVE SUPPORTERS -->#}
-{#    <section id="supporters" class="app_component">#}
-{#        <div class="container">#}
-{#            <section>#}
-{#                <h2>ESTES SÃO NOSSOS APOIADORES</h2>#}
-{#                <div class="card-columns">#}
-{#                    {% static 'images/supporters/' as baseURL %}#}
-{#                    {% for supporter in supporters %}#}
-{#                        <div class="card grow">#}
-{#                            <a href="{{ supporter.page }}" target="_blank">#}
-{#                                <img class="supporter" src="{{ baseURL }}{{ supporter.image|imagename }}">#}
-{#                            </a>#}
-{#                        </div>#}
-{#                    {% endfor %}#}
-{#                </div>#}
-{#            </section>#}
-{#        </div>#}
-{#    </section>#}
+    <!-- ACTIVE SUPPORTERS -->
+    <section id="supporters" class="app_component">
+        <div class="container">
+            <section>
+                <h2>ESTES SÃO NOSSOS APOIADORES</h2>
+                <div class="card-columns">
+                    {% static 'images/supporters/' as baseURL %}
+                    {% for supporter in supporters %}
+                        <div class="card grow">
+                            <a href="{{ supporter.page }}" target="_blank">
+                                <img class="supporter" src="{{ baseURL }}{{ supporter.image|imagename }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </section>
 
 {% endblock body %}
 
 {% block scripts %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
+    <script src="{% static "javascripts/pricing.js" %}"></script>
 {% endblock scripts %}

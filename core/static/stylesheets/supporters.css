@@ -15,9 +15,26 @@
 
 #supporters .supporter {
     width: 100%;
-    padding: 5px;
+    padding: 10px;
+    border: dotted;
+    border: thin;
+    border: #cccccc;
+}
 
-    -webkit-box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.75);
-    box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.75);
+@media (min-width: 576px) {
+    #supporters .card-columns {
+        column-count: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    #supporters .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 992px) {
+    #supporters .card-columns {
+        column-count: 3;
+    }
 }
