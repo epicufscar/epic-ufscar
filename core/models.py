@@ -218,7 +218,7 @@ class SelectionProcess(models.Model):
     id = models.CharField(primary_key=True, blank=False, max_length=10, verbose_name='processo ID')
     status = models.CharField(blank=False, max_length=2, choices=STATUS, verbose_name='status')
     application = models.URLField(blank=False, max_length=100, verbose_name='link formulário')
-    announcement = models.FileField(blank=False, upload_to='core/static/files/editais/', verbose_name='edital')
+    announcement = models.FileField(blank=True, null=True, upload_to='core/static/files/editais/', verbose_name='edital')
     notes = models.TextField(blank=False, verbose_name='texto da página')
 
 

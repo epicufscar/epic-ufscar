@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load project_tags %}
+
+{% block title %}Processo Seletivo 2018.1{% endblock title %}
+
+{% block body %}
+    <main id="sprocess" class="app_component">
+        <div class="container">
+            {% static 'files/editais/' as baseURL %}
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>PROCESSO SELETIVO {{ process.id }}</h2>
+                    <section>
+
+                        <!-- TEXTUAL INFORMATION -->
+                        <div class="process-info">
+                            {{ process.notes|safe }}
+                        </div>
+
+                        <!-- ANNOUNCEMENT DOWNLOAD LINK -->
+                        {% if process.announcement %}
+                        <div class="file-download">
+                            <a href="{{ baseURL }}{{ process.announcement|imagename }}" target="_blank">
+                                <i class="fa fa-download fa-2x"></i><br>
+                                EDITAL
+                            </a>
+                        </div>
+                        {% endif %}
+
+                        <!-- BUTTON LINK FOR APPLYING -->
+                        {% if phases.first.status == 'EA' %}
+                            <div class="form-link">
+                                <a href="{{ process.application }}" target="_blank" class="btn-epic btn-block">ME INSCREVER</a>
+                            </div>
+                        {% endif %}
+                    </section>
+                </div>
+
+                <!-- SELECTION PROCESS STEPS -->
+                <div class="col-lg-6">
+                    {% for phase in phases %}
+                        <section class="step wow bounceInDown  {{ phase.status }}">
+                            <div class="step-title">
+                                {% if phase.status == 'EA' %} <i class="fa fa-spinner fa-2x"></i>
+                                {% elif phase.status == 'EB' %} <i class="fa fa-clock-o fa-2x"></i>
+                                {% elif phase.status == 'EN' %} <i class="fa fa-check-square fa-2x"></i>
+                                {% endif %}
+                                {{ phase.phase }}
+                            </div>
+                            <div class="step-timing">{{ phase.date|safe }}</div>
+                            {% if phase.notes|safe %}
+                                <div class="step-results">
+                                    {{ phase.notes|safe }}
+                                </div>
+                            {% endif %}
+                        </section>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </main>
+{% endblock body %}
