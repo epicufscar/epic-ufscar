@@ -86,21 +86,12 @@ def courses(request):
     return render(request, 'core/courses.html', data)
 
 
-def sprocess_2017_1(request):
-    sprocess = SelectionProcess.objects.get(id__istartswith='2017.1')
+def sprocess(request, year, half = None):
+    sp_id = year if not half else year+'.'+half
+    sprocess = SelectionProcess.objects.get(id__istartswith=sp_id)
     phases = SelectionProcessStep.objects.filter(process=sprocess.id).order_by('id')
     data = {
         'process': sprocess,
         'phases': phases
     }
-    return render(request, 'core/sprocesses/sprocess_2017_1.html', data)
-
-
-def sprocess_2018(request):
-    sprocess = SelectionProcess.objects.get(id__istartswith='2018')
-    phases = SelectionProcessStep.objects.filter(process=sprocess.id).order_by('id')
-    data = {
-        'process': sprocess,
-        'phases': phases
-    }
-    return render(request, 'core/sprocesses/sprocess_2018.html', data)
+    return render(request, 'core/sprocesses/sprocess.html', data)

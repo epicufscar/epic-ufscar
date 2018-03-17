@@ -22,8 +22,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" id="spDropdown" data-toggle="dropdown" aria-expanded="false">PROCESSOS SELETIVOS</a>
                             <div class="dropdown-menu" aria-labelledby="spDropdown">
-                                <a class="dropdown-item" href="{% url 'sprocess_2017_1' %}">2017.1</a>
-                                <a class="dropdown-item" href="{% url 'sprocess_2018' %}">2018</a>
+                                <a class="dropdown-item" href="{% url 'sprocess' year=2017 half=1 %}">2017.1</a>
+                                <a class="dropdown-item" href="{% url 'sprocess' year=2018 %}">2018</a>
                             </div>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTATO</a></li>
