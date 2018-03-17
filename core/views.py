@@ -94,3 +94,13 @@ def sprocess_2017_1(request):
         'phases': phases
     }
     return render(request, 'core/sprocesses/sprocess_2017_1.html', data)
+
+
+def sprocess_2018(request):
+    sprocess = SelectionProcess.objects.get(id__istartswith='2018')
+    phases = SelectionProcessStep.objects.filter(process=sprocess.id).order_by('id')
+    data = {
+        'process': sprocess,
+        'phases': phases
+    }
+    return render(request, 'core/sprocesses/sprocess_2018.html', data)
