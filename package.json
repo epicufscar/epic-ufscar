@@ -1,0 +1,27 @@
+{
+	"name": "epic-ufscar",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "next",
+		"build": "next build",
+		"start": "next start"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/epicufscar/epic-ufscar.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/epicufscar/epic-ufscar/issues"
+	},
+	"homepage": "https://github.com/epicufscar/epic-ufscar#readme",
+	"dependencies": {
+		"next": "^9.4.4",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1"
+	}
+}
